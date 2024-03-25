@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const ContainerSection = styled.section`
-  background-color: green;
-  background: linear-gradient(97.54deg, #002f52 35.49%, #326589 165.37%);
+export const ContainerComeco = styled.div`
+  background: linear-gradient(97.54deg, #002F52 35.49%, #326589 165.37%);
   display: flex;
   flex-direction: column;
   align-items: center;

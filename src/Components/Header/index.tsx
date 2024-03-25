@@ -1,11 +1,12 @@
-import * as Style from './style'
+import * as Style from './style';
+import logo from '../../assets/Logo.png'
 
 export const Header = () => {
     return (
         <Style.Header>
             <div className="containerInfos">
                 <div className="containerInfos__titulo">
-                    <img src="./Logo.png" alt="Logo do site" />
+                    <img src={logo} alt="Logo do site" />
                     <h1 className="containerInfos__titulo__texto"><strong>Alura</strong>Books</h1>
                 </div>
                 <ul className="lista">

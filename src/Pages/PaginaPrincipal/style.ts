@@ -106,6 +106,7 @@ export const ContainerNovidades = styled.div`
   align-items: center;
   gap: 5rem;
   height: 200px;
+  padding: 1.5rem 0;
 
   .tituloNovidades{
     color: #002F52;

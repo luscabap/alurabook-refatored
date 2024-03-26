@@ -7,4 +7,7 @@ export const ContainerItem = styled.li`
     justify-content: flex-start;
     gap: 0.7rem;
     margin: 1rem 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: #474646;
 `

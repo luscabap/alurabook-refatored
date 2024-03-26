@@ -28,6 +28,7 @@ export const PaginaPrincipal = () => {
                     <input type="text" placeholder="Qual será sua próxima leitura?" className="containerSection__containerInput__input"/>
                 </div>
             </Style.ContainerComeco>
+
             <LivrosDestaque 
                 titulo='últimos lançamentos'
                 imgLivroPrincipal='livro1.svg'
@@ -41,19 +42,22 @@ export const PaginaPrincipal = () => {
                 imgLivro2='livro5.svg'
                 imgLivro3='livro6.svg'
             />
+
             <Style.ContainerCategorias>
                 <h3 className='tituloCategorias'>Categorias mais buscadas</h3>
                 <div className="containerTags">
                     {categorias.map(i => <button>{i}</button>)}
                 </div>
             </Style.ContainerCategorias>
+
             <Style.ContainerNovidades>
                 <div>
                     <h3 className='tituloNovidades'>Fique por dentro das novidades</h3>
-                    <p className='descricaoNovidades'>Atualizações de e-books, novos livros, promoções e outros.</p>
+                    <p className='descricaoNovidades'>Atualizações de e-books, novos livros,<br></br> promoções e outros.</p>
                 </div>
                 <input placeholder='Cadastre seu e-mail' className='inputNovidades'/>
             </Style.ContainerNovidades>
+            
             <Footer />
         </>
     )

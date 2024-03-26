@@ -7,8 +7,8 @@ export const Footer = () => {
         <Style.ContainerFooter>
             <h3 className='tituloContainerFooter'>Grupo Alura</h3>
             <div className="containerInfosFooter">
-                <h4 className="containersTitulo">EDUCAÇÃO</h4>
-                <ul className="containersLista">
+                <h4 className="containerInfosFooter__titulo">EDUCAÇÃO</h4>
+                <ul className="containerInfosFooter__containersLista">
                     {dataEducacao.map((item, index) => (
                         <ListaItem 
                             img={item.img}
@@ -19,8 +19,8 @@ export const Footer = () => {
                 </ul>
             </div>
             <div className="containerInfosFooter">
-                <h4 className="containersTitulo">EDUCAÇÃO ONLINE</h4>
-                <ul className="containersLista">
+                <h4 className="containerInfosFooter__titulo">EDUCAÇÃO ONLINE</h4>
+                <ul className="containerInfosFooter__containersLista">
                     {dataEducacaoOnline.map((item, index) => (
                         <ListaItem 
                             img={item.img}
@@ -31,8 +31,8 @@ export const Footer = () => {
                 </ul>
             </div>
             <div className="containerInfosFooter">
-                <h4 className="containersTitulo">COMUNIDADE</h4>
-                <ul className="containersLista">
+                <h4 className="containerInfosFooter__titulo">COMUNIDADE</h4>
+                <ul className="containerInfosFooter__containersLista">
                     {dataComunidade.map((item, index) => (
                         <ListaItem 
                             img={item.img}

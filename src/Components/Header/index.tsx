@@ -1,5 +1,6 @@
 import * as Style from './style';
-import logo from '../../assets/Logo.png'
+import logo from '../../assets/Logo.png';
+import { ShoppingBagOpen, User } from '@phosphor-icons/react'
 
 export const Header = () => {
     return (
@@ -16,8 +17,14 @@ export const Header = () => {
                 </ul>
             </div>
             <div className="containerBotoes">
-                <a href="#" className="containerBotoes__botao">Minha Sacola</a>
-                <a href="#" className="containerBotoes__botao">Meu Perfil</a>
+                <div className="containerBotoes__Item">
+                    <ShoppingBagOpen size={32} color='#002F52'/>
+                    <a href="#" className="containerBotoes__Item__botao">Minha Sacola</a>
+                </div>
+                <div className="containerBotoes__Item">
+                    <User size={32} color='#002F52'/>
+                    <a href="#" className="containerBotoes__Item__botao">Meu Perfil</a>
+                </div>
             </div>
         </Style.Header>
     )

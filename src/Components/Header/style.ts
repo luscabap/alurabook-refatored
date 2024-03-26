@@ -43,10 +43,17 @@ export const Header = styled.header`
         margin: 0 4rem 0 0;
         gap: 4rem;
 
-        .containerBotoes__botao{
-            text-decoration: none;
-            color: #000;
-            font-size: 20px;
+        .containerBotoes__Item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+
+            .containerBotoes__Item__botao{
+                text-decoration: none;
+                color: #000;
+                font-size: 20px;
+            }
         }
     }
 `

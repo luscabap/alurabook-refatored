@@ -22,18 +22,46 @@ export const ContainerComeco = styled.div`
     color: #fff;
   }
 
-  .containerSection__input {
+  .containerSection__containerInput{
     width: 586px;
-    height: 56px;
-    border-radius: 24px;
-    border: 1px solid #fff;
-    padding: 10px 24px 10px 24px;
-    gap: 10px;
-    background-color: transparent;
-    text-align: center;
-    color: #fff;
-    margin: 2rem 0 0 0;
+      height: 56px;
+      border-radius: 24px;
+      border: 1px solid #fff;
+      padding: 10px 24px 10px 24px;
+      gap: 10px;
+      background-color: transparent;
+      text-align: center;
+      color: #fff;
+      margin: 2rem 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    .containerSection__icone{
+      flex: 1;
+      cursor: pointer;
+      height: 100%;
+    }
+  
+    .containerSection__containerInput__input {
+      flex: 25;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      &:focus{
+        border: none;
+        outline: none;
+      }
+
+      &::placeholder{
+        color: #fff;
+        font-size: 16px;
+      }
+    }
   }
+
 `;
 
 export const ContainerCategorias = styled.div`

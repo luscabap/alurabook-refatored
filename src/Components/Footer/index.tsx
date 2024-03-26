@@ -1,38 +1,45 @@
-import * as Style from './style'
+import * as Style from './style';
+import { dataEducacaoOnline, dataComunidade, dataEducacao } from './data/index'
+import { ListaItem } from '../ListaItem';
 
 export const Footer = () => {
     return (
         <Style.ContainerFooter>
-            <h3>Grupo Alura</h3>
-            <div className="containerEducacao">
-                <h4>EDUCAÇÃO</h4>
-                <ul>
-                    <li>Caelum</li>
-                    <li>Casa do Código</li>
+            <h3 className='tituloContainerFooter'>Grupo Alura</h3>
+            <div className="containerInfosFooter">
+                <h4 className="containersTitulo">EDUCAÇÃO</h4>
+                <ul className="containersLista">
+                    {dataEducacao.map((item, index) => (
+                        <ListaItem 
+                            img={item.img}
+                            texto={item.texto}
+                            key={index}
+                        />
+                    ))}
                 </ul>
             </div>
-            <div className="containerEduOnline">
-                <h4>EDUCAÇÃO ONLINE</h4>
-                <ul>
-                    <li>Alura</li>
-                    <li>Alura Para Empresas</li>
-                    <li>Alura LATAM</li>
-                    <li>Alura Start</li>
-                    <li>MusicDot</li>
-                    <li>Alura Língua</li>
-                    <li>PM3</li>
+            <div className="containerInfosFooter">
+                <h4 className="containersTitulo">EDUCAÇÃO ONLINE</h4>
+                <ul className="containersLista">
+                    {dataEducacaoOnline.map((item, index) => (
+                        <ListaItem 
+                            img={item.img}
+                            texto={item.texto}
+                            key={index}
+                        />
+                    ))}
                 </ul>
             </div>
-            <div className="containerComunidade">
-                <h4>COMUNIDADE</h4>
-                <ul>
-                    <li>Hipsters ponto Tech</li>
-                    <li>Scuba Dev</li>
-                    <li>Layers ponto Tech</li>
-                    <li>Like a Boss</li>
-                    <li>Carreira sem Fronteira</li>
-                    <li>Hipsters ponto Jobs</li>
-                    <li>GUJ</li>
+            <div className="containerInfosFooter">
+                <h4 className="containersTitulo">COMUNIDADE</h4>
+                <ul className="containersLista">
+                    {dataComunidade.map((item, index) => (
+                        <ListaItem 
+                            img={item.img}
+                            texto={item.texto}
+                            key={index}
+                        />
+                    ))}
                 </ul>
             </div>
         </Style.ContainerFooter>

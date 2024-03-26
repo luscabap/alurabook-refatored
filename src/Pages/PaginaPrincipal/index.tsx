@@ -2,6 +2,7 @@ import { Footer } from '../../Components/Footer';
 import { Header } from '../../Components/Header';
 import { LivrosDestaque } from '../../Components/LivrosDestaque';
 import * as Style from './style';
+import { MagnifyingGlass } from '@phosphor-icons/react';
 
 export const PaginaPrincipal = () => {
 
@@ -22,7 +23,10 @@ export const PaginaPrincipal = () => {
             <Style.ContainerComeco>
                 <h2 className="containerSection__titulo">Já sabe por onde começar?</h2>
                 <p className="containerSection__texto">Encontre em nossa estante o que precisa para seu desenvolvimento</p>
-                <input type="text" placeholder="Qual será sua próxima leitura?" className="containerSection__input"/>
+                <div className="containerSection__containerInput">
+                    <MagnifyingGlass size={24} color='#FFF' className='containerSection__icone'/>
+                    <input type="text" placeholder="Qual será sua próxima leitura?" className="containerSection__containerInput__input"/>
+                </div>
             </Style.ContainerComeco>
             <LivrosDestaque 
                 titulo='últimos lançamentos'

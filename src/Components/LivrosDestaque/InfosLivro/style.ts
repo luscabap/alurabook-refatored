@@ -1,5 +1,24 @@
 import styled from "styled-components";
 
+export const HeaderContainer = styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .headerContainer__icone__tituloContainer{
+        color: #EB9B00;
+        font-weight: 700;
+        font-size: 32px;
+        margin: 0;
+    }
+
+    .headerContainer__icone{
+        margin-left: 2rem;
+        cursor: pointer;
+    }
+`;
+
 export const ContainerInfosLivro = styled.div`
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
@@ -11,12 +30,7 @@ export const ContainerInfosLivro = styled.div`
     height: 300px;
     width: 750px;
 
-    .tituloContainer{
-        color: #EB9B00;
-        font-weight: 700;
-        font-size: 32px;
-        margin: 0;
-    }
+
 
     .tituloLivro{
         color: #002F52;

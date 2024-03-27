@@ -1,8 +1,15 @@
 import * as Style from './style';
 import logo from '../../assets/Logo.png';
 import { ShoppingBagOpen, User } from '@phosphor-icons/react'
+import { useState } from 'react';
 
-export const Header = () => {
+export const Header: React.FC = () => {
+    const [aberto, setAberto] = useState<boolean>(false)
+
+    function handleAberto() {
+        setAberto(!aberto)
+    }
+
     return (
         <Style.Header>
             <div className="containerInfos">
@@ -11,7 +18,40 @@ export const Header = () => {
                     <h1 className="containerInfos__titulo__texto"><strong>Alura</strong>Books</h1>
                 </div>
                 <ul className="lista">
-                    <li className="lista__item">CATEGORIAS</li>
+                    <div>
+                        <li className="lista__item" onClick={handleAberto}>CATEGORIAS</li>
+                        <Style.OpcoesCategorias aberto={aberto}>
+                            <a href="#" className='opcoesCategorias__link'>
+                                <li className='opcoesCategorias__link__item'>
+                                    programação
+                                </li>
+                            </a>
+
+                            <a href="#" className='opcoesCategorias__link'>
+                                <li className='opcoesCategorias__link__item'>
+                                    front-end
+                                </li>
+                            </a>
+
+                            <a href="#" className='opcoesCategorias__link'>
+                                <li className='opcoesCategorias__link__item'>
+                                    infraestrutura
+                                </li>
+                            </a>
+
+                            <a href="#" className='opcoesCategorias__link'>
+                                <li className='opcoesCategorias__link__item'>
+                                    business
+                                </li>
+                            </a>
+
+                            <a href="#" className='opcoesCategorias__link'>
+                                <li className='opcoesCategorias__link__item'>
+                                    design & ux
+                                </li>
+                            </a>
+                        </Style.OpcoesCategorias>
+                    </div>
                     <li className="lista__item">FAVORITOS</li>
                     <li className="lista__item">MINHA ESTANTE</li>
                 </ul>

@@ -46,7 +46,7 @@ export const PaginaPrincipal = () => {
             <Style.ContainerCategorias>
                 <h3 className='tituloCategorias'>Categorias mais buscadas</h3>
                 <div className="containerTags">
-                    {categorias.map(i => <button>{i}</button>)}
+                    {categorias.map((item, index) => <button key={index}>{item}</button>)}
                 </div>
             </Style.ContainerCategorias>
 

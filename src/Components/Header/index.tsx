@@ -2,6 +2,7 @@ import * as Style from './style';
 import logo from '../../assets/Logo.png';
 import { ShoppingBagOpen, User } from '@phosphor-icons/react'
 import { useState } from 'react';
+import ModalCadastroUsuario from '../ModalCadastroUsuario';
 
 export const Header: React.FC = () => {
     const [aberto, setAberto] = useState<boolean>(false)
@@ -15,11 +16,13 @@ export const Header: React.FC = () => {
             <div className="containerInfos">
                 <div className="containerInfos__titulo">
                     <img src={logo} alt="Logo do site" />
-                    <h1 className="containerInfos__titulo__texto"><strong>Alura</strong>Books</h1>
+                    <h1 className="containerInfos__titulo__texto">AluraBooks</h1>
                 </div>
                 <ul className="lista">
                     <div>
                         <li className="lista__item" onClick={handleAberto}>CATEGORIAS</li>
+
+                        
                         <Style.OpcoesCategorias aberto={aberto}>
                             <a href="#" className='opcoesCategorias__link'>
                                 <li className='opcoesCategorias__link__item'>
@@ -65,6 +68,7 @@ export const Header: React.FC = () => {
                     <User size={32} color='#002F52'/>
                     <a href="#" className="containerBotoes__Item__botao">Meu Perfil</a>
                 </div>
+                <ModalCadastroUsuario />
             </div>
         </Style.Header>
     )

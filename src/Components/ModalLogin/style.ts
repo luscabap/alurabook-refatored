@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-export const CorpoModalCadastro = styled.div`
+export const CorpoModalLogin = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding-top: 32px;
 
@@ -9,9 +10,9 @@ export const CorpoModalCadastro = styled.div`
     width: 500px;
     max-width: 100%;
   }
-    footer {
-      margin-top: 48px;
-      text-align: center;
-    }
-  
+
+  .acoes {
+    margin-top: 48px;
+    text-align: center;
+  }
 `;

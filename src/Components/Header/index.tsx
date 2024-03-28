@@ -3,6 +3,7 @@ import logo from '../../assets/Logo.png';
 import { ShoppingBagOpen, User } from '@phosphor-icons/react'
 import { useState } from 'react';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
+import { ModalLogin } from '../ModalLogin';
 
 export const Header: React.FC = () => {
     const [aberto, setAberto] = useState(false)
@@ -74,6 +75,7 @@ export const Header: React.FC = () => {
                     aberta={modalCadastroAberta}
                     aoFechar={() => setModalCadastroAberta(false)}
                 />
+                <ModalLogin />
             </div>
         </Style.Header>
     )

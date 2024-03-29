@@ -1,5 +1,3 @@
-import { Footer } from '../../Components/Footer';
-import { Header } from '../../Components/Header';
 import { LivrosDestaque } from '../../Components/LivrosDestaque';
 import * as Style from './style';
 import { MagnifyingGlass } from '@phosphor-icons/react';
@@ -19,7 +17,6 @@ export const PaginaPrincipal = () => {
 
     return (
         <>
-            <Header />
             <Style.ContainerComeco>
                 <h2 className="containerSection__titulo">Já sabe por onde começar?</h2>
                 <p className="containerSection__texto">Encontre em nossa estante o que precisa para seu desenvolvimento</p>
@@ -57,8 +54,6 @@ export const PaginaPrincipal = () => {
                 </div>
                 <input placeholder='Cadastre seu e-mail' className='inputNovidades'/>
             </Style.ContainerNovidades>
-            
-            <Footer />
         </>
     )
 }

@@ -5,10 +5,11 @@ import axios from "axios";
 
 interface IModalLoginProps {
     aberta: boolean,
-    aoFechar: () => void
+    aoFechar: () => void,
+    aoEfetuarLogin: () => void
 }
 
-export const ModalLogin = ({ aberta, aoFechar }: IModalLoginProps) => {
+export const ModalLogin = ({ aberta, aoFechar, aoEfetuarLogin }: IModalLoginProps) => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
@@ -24,7 +25,7 @@ export const ModalLogin = ({ aberta, aoFechar }: IModalLoginProps) => {
                 sessionStorage.setItem('token', resposta.data.access_token);
                 setEmail("")
                 setSenha("");
-                aoFechar();
+                aoEfetuarLogin();
             })
             .catch(erro => {
                 if (erro?.response?.data?.message) {

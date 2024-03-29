@@ -13,6 +13,7 @@ export const Header: React.FC = () => {
     }
 
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
+    const [modalLoginAberta, setModalLoginAberta] = useState(false);
 
     return (
         <Style.Header>
@@ -67,15 +68,22 @@ export const Header: React.FC = () => {
                     <ShoppingBagOpen size={32} color='#002F52'/>
                     <a href="#" className="containerBotoes__Item__botao">Minha Sacola</a>
                 </div>
+                <div className="containerBotoes__Item" onClick={() => setModalLoginAberta(true)}>
+                    <User size={32} color='#002F52'/>
+                    <a href="#" className="containerBotoes__Item__botao">Login</a>
+                </div>
                 <div className="containerBotoes__Item" onClick={() => setModalCadastroAberta(true)}>
                     <User size={32} color='#002F52'/>
-                    <a href="#" className="containerBotoes__Item__botao">Meu Perfil</a>
+                    <a href="#" className="containerBotoes__Item__botao">Cadastrar-se</a>
                 </div>
                 <ModalCadastroUsuario 
                     aberta={modalCadastroAberta}
                     aoFechar={() => setModalCadastroAberta(false)}
                 />
-                <ModalLogin />
+                <ModalLogin 
+                    aberta={modalLoginAberta}
+                    aoFechar={() => setModalLoginAberta(false)}
+                />
             </div>
         </Style.Header>
     )

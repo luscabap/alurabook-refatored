@@ -21,6 +21,7 @@ export const Header = styled.header`
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      cursor: pointer;
 
       .containerInfos__titulo__texto {
         font-weight: 400;

@@ -1,9 +1,9 @@
 import { LivrosDestaque } from '../../Components/LivrosDestaque';
+import { SecaoDestacada } from '../../Components/SecaoDestacada';
 import * as Style from './style';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
 export const PaginaPrincipal = () => {
-
     const categorias = [
         'Android',
         'OO',
@@ -40,12 +40,11 @@ export const PaginaPrincipal = () => {
                 imgLivro3='livro6.svg'
             />
 
-            <Style.ContainerCategorias>
-                <h3 className='tituloCategorias'>Categorias mais buscadas</h3>
-                <div className="containerTags">
-                    {categorias.map((item, index) => <button key={index}>{item}</button>)}
-                </div>
-            </Style.ContainerCategorias>
+            <SecaoDestacada 
+                titulo='CATEGORIAS MAIS BUSCADAS'
+                botoes={categorias}
+            />
+
 
             <Style.ContainerNovidades>
                 <div>

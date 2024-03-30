@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
     return (
         <Style.Header>
             <div className="containerInfos">
-                <div className="containerInfos__titulo">
+                <div className="containerInfos__titulo" onClick={() => navigate("/")}>
                     <img src={logo} alt="Logo do site" />
                     <h1 className="containerInfos__titulo__texto">AluraBooks</h1>
                 </div>

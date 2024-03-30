@@ -65,38 +65,9 @@ export const ContainerComeco = styled.div`
 `;
 
 export const ContainerCategorias = styled.div`
-  background: linear-gradient(97.54deg, #002F52 35.49%, #326589 165.37%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 420px;
 
-  .tituloCategorias{
-    font-weight: 300;
-    font-size: 32px;
-    text-transform: uppercase;
-    color: #fff;
-  }
 
-  .containerTags{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    width: 50%;
 
-      button{
-        background-color: #EB9B00;
-        color: #fff;
-        height: 85px;
-        width: 165px;
-        border: none;
-        font-size: 24px;
-        font-weight: 700;
-      }
-  }
 
 `;
 

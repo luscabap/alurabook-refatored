@@ -7,6 +7,7 @@ export const ContainerPaginaLogada = styled.div`
         font-weight: 700;
         color: #fff;
         text-align: center;
+        cursor: pointer;
     }
 
     .containerInfos{
@@ -26,14 +27,6 @@ export const ContainerPaginaLogada = styled.div`
                 width: 160px;
                 cursor: pointer;
             }
-        };
-
-        .containerInfos__pedidos{
-
-            .containerInfos__pedidos__titulo{
-                font-weight: 700;
-                font-size: 24px;
-            }
         }
-    }
+    };
 `

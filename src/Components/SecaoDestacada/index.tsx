@@ -1,7 +1,7 @@
-import { ISecaoDestacadaProps } from "../../interface";
+import { ISecaoDestacadaProps } from '../../interface/ISecaoDestacadaProps'
 import * as Style from './style'
 
-export const SecaoDestacada = ({ titulo, botoes }:ISecaoDestacadaProps) => {
+export const SecaoDestacada = ({ titulo, botoes }: ISecaoDestacadaProps) => {
     return (
         <Style.ContainerSecaoDestacada>        
             <h2 className="tituloCategorias">{titulo}</h2>

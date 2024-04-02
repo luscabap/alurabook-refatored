@@ -1,18 +1,22 @@
 import * as Style from './style';
 import logo from '../../assets/Logo.png';
 import { ShoppingBagOpen, SignOut, User, Users } from '@phosphor-icons/react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
 import { ModalLogin } from '../ModalLogin';
 import { useNavigate } from 'react-router-dom';
+import { ICategoriaProps } from '../../interface/ICategoriaProps';
+import http from '../../http';
 
 
 export const Header: React.FC = () => {
     const [aberto, setAberto] = useState(false)
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
     const [modalLoginAberta, setModalLoginAberta] = useState(false);
+    const [categorias, setCategorias] = useState<ICategoriaProps[]>([]);
+
     const navigate = useNavigate();
-    
+
     const token = sessionStorage.getItem('token')
     const [usuarioLogado, setUsuarioLogado] = useState<boolean>(token != null);
 
@@ -32,6 +36,13 @@ export const Header: React.FC = () => {
         navigate('/')
     }
 
+    useEffect(() => {
+        http.get<ICategoriaProps[]>('/categorias')
+            .then(resposta => {
+                setCategorias(resposta.data)
+            })
+    }, [])
+
     return (
         <Style.Header>
             <div className="containerInfos">
@@ -42,38 +53,18 @@ export const Header: React.FC = () => {
                 <ul className="lista">
                     <div>
                         <li className="lista__item" onClick={handleAberto}>CATEGORIAS</li>
-
-
                         <Style.OpcoesCategorias aberto={aberto}>
-                            <a href="#" className='opcoesCategorias__link'>
-                                <li className='opcoesCategorias__link__item'>
-                                    programação
-                                </li>
-                            </a>
-
-                            <a href="#" className='opcoesCategorias__link'>
-                                <li className='opcoesCategorias__link__item'>
-                                    front-end
-                                </li>
-                            </a>
-
-                            <a href="#" className='opcoesCategorias__link'>
-                                <li className='opcoesCategorias__link__item'>
-                                    infraestrutura
-                                </li>
-                            </a>
-
-                            <a href="#" className='opcoesCategorias__link'>
-                                <li className='opcoesCategorias__link__item'>
-                                    business
-                                </li>
-                            </a>
-
-                            <a href="#" className='opcoesCategorias__link'>
-                                <li className='opcoesCategorias__link__item'>
-                                    design & ux
-                                </li>
-                            </a>
+                            {
+                                categorias.map(categoria => (
+                                    <li
+                                        className='opcoesCategorias__item'
+                                        onClick={() => navigate(`/categorias/${categoria.slug}`)}
+                                        key={categoria.id}
+                                    >
+                                        {categoria.nome}
+                                    </li>
+                                ))
+                            }
                         </Style.OpcoesCategorias>
                     </div>
                     <li className="lista__item">FAVORITOS</li>
@@ -102,7 +93,7 @@ export const Header: React.FC = () => {
                 {usuarioLogado && (
                     <>
                         <div className="containerMinhaConta" onClick={() => navigate("/minha-conta")}>
-                            <User size={32} color='#002F52'/>
+                            <User size={32} color='#002F52' />
                             <p className="containerMinhaConta__texto">Minha conta</p>
                         </div>
                         <div className="containerLogout" onClick={efetuarLogout}>

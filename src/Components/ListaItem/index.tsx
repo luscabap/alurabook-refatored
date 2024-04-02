@@ -1,4 +1,4 @@
-import { IListaItemProps } from '../../interface/index';
+import { IListaItemProps } from '../../interface/IListaItemProps'
 import * as Style from './style'
 
 export const ListaItem = ({ texto, img }: IListaItemProps) => {

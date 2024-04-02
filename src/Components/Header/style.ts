@@ -97,7 +97,7 @@ export const OpcoesCategorias = styled.ul<IOpcoesCategoriasProps>`
   padding: 0;
   top: 5.3rem;
 
-  .opcoesCategorias__link {
+  .opcoesCategorias__item {
     text-decoration: none;
     text-transform: uppercase;
     padding: 1rem;
@@ -105,15 +105,13 @@ export const OpcoesCategorias = styled.ul<IOpcoesCategoriasProps>`
     font-size: 16px;
     line-height: 24px;
     color: #002f52;
+    list-style-type: none;
+    cursor: pointer;
 
     &:hover {
       background: linear-gradient(97.54deg, #002f52 35.49%, #326589 165.37%);
       color: #fff;
       transition: 0.6s;
-    }
-
-    .opcoesCategorias__link__item {
-      list-style-type: none;
     }
   }
 `;

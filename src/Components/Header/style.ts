@@ -60,6 +60,20 @@ export const Header = styled.header`
         font-size: 20px;
       }
     }
+
+    .containerMinhaConta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      .containerMinhaConta__texto {
+        text-decoration: none;
+        color: #000;
+        font-size: 20px;
+      }
+    }
   }
 `;
 
@@ -83,9 +97,9 @@ export const OpcoesCategorias = styled.ul<IOpcoesCategoriasProps>`
     color: #002f52;
 
     &:hover {
-        background: linear-gradient(97.54deg, #002f52 35.49%, #326589 165.37%);
-        color: #fff;
-        transition: 0.6s;
+      background: linear-gradient(97.54deg, #002f52 35.49%, #326589 165.37%);
+      color: #fff;
+      transition: 0.6s;
     }
 
     .opcoesCategorias__link__item {

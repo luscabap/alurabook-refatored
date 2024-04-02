@@ -1,6 +1,6 @@
 import * as Style from './style';
 import logo from '../../assets/Logo.png';
-import { ShoppingBagOpen, User } from '@phosphor-icons/react'
+import { ShoppingBagOpen, User, Users } from '@phosphor-icons/react'
 import { useState } from 'react';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
 import { ModalLogin } from '../ModalLogin';
@@ -83,11 +83,11 @@ export const Header: React.FC = () => {
                 {!usuarioLogado && (
                     <>
                         <div className="containerBotoes__Item" onClick={() => setModalLoginAberta(true)}>
-                            <User size={32} color='#002F52' />
+                            <Users size={32} color='#002F52' />
                             <a href="#" className="containerBotoes__Item__botao">Login</a>
                         </div>
                         <div className="containerBotoes__Item" onClick={() => setModalCadastroAberta(true)}>
-                            <User size={32} color='#002F52' />
+                            <Users size={32} color='#002F52' />
                             <a href="#" className="containerBotoes__Item__botao">Cadastrar-se</a>
                         </div>
                     </>
@@ -95,8 +95,9 @@ export const Header: React.FC = () => {
 
                 {usuarioLogado && (
                     <>
-                        <div onClick={() => navigate("/minha-conta")}>
-                            MINHA CONTA
+                        <div className="containerMinhaConta" onClick={() => navigate("/minha-conta")}>
+                            <User size={32} color='#002F52'/>
+                            <p className="containerMinhaConta__texto">Minha conta</p>
                         </div>
                     </>
                 )}

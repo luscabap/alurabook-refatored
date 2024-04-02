@@ -1,6 +1,6 @@
 import * as Style from './style';
 import logo from '../../assets/Logo.png';
-import { ShoppingBagOpen, User, Users } from '@phosphor-icons/react'
+import { ShoppingBagOpen, SignOut, User, Users } from '@phosphor-icons/react'
 import { useState } from 'react';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
 import { ModalLogin } from '../ModalLogin';
@@ -11,11 +11,11 @@ export const Header: React.FC = () => {
     const [aberto, setAberto] = useState(false)
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
     const [modalLoginAberta, setModalLoginAberta] = useState(false);
-
+    const navigate = useNavigate();
+    
     const token = sessionStorage.getItem('token')
     const [usuarioLogado, setUsuarioLogado] = useState<boolean>(token != null);
 
-    const navigate = useNavigate();
 
     function handleAberto() {
         setAberto(!aberto)
@@ -24,6 +24,12 @@ export const Header: React.FC = () => {
     function aoEfetuarLogin() {
         setModalLoginAberta(false)
         setUsuarioLogado(true)
+    }
+
+    const efetuarLogout = () => {
+        setUsuarioLogado(false)
+        sessionStorage.removeItem('token')
+        navigate('/')
     }
 
     return (
@@ -98,6 +104,9 @@ export const Header: React.FC = () => {
                         <div className="containerMinhaConta" onClick={() => navigate("/minha-conta")}>
                             <User size={32} color='#002F52'/>
                             <p className="containerMinhaConta__texto">Minha conta</p>
+                        </div>
+                        <div className="containerLogout" onClick={efetuarLogout}>
+                            <SignOut size={32} />
                         </div>
                     </>
                 )}

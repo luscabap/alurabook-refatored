@@ -30,7 +30,6 @@ export const PaginaLogada = () => {
                     <Outlet />
                 </div>
             </div>
-
             <SecaoDestacada
                 titulo='CATEGORIAS MAIS BUSCADAS'
                 botoes={categorias}

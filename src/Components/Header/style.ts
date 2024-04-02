@@ -73,6 +73,16 @@ export const Header = styled.header`
         color: #000;
         font-size: 20px;
       }
+    };
+
+    .containerLogout{
+      cursor: pointer;
+      transition: 0.4s;
+
+      &:hover{
+        color: red;
+        transition: 0.7s;
+      }
     }
   }
 `;

@@ -1,7 +1,7 @@
 import { AbBotao, AbCampoTexto, AbModal } from "ds-alurabooks";
 import { useState } from "react";
 import * as Style from './style'
-import axios from "axios";
+import http from "../../http";
 
 interface IModalLoginProps {
     aberta: boolean,
@@ -20,7 +20,7 @@ export const ModalLogin = ({ aberta, aoFechar, aoEfetuarLogin }: IModalLoginProp
             senha
         }
 
-        axios.post('http://localhost:8000/public/login', usuario)
+        http.post('/public/login', usuario)
             .then(resposta => {
                 sessionStorage.setItem('token', resposta.data.access_token);
                 setEmail("")

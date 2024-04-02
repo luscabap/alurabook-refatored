@@ -1,28 +1,23 @@
 import { AbBotao } from "ds-alurabooks";
-import * as Style from './style';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { IPedidoReqProps } from "../../interface/IPedido";
 import { XCircle } from "@phosphor-icons/react";
+import http from "../../http";
+import * as Style from './style';
 
 export const Pedido = () => {
     const [pedidos, setPedidos] = useState<IPedidoReqProps[]>([]);
     const formatador = Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' });
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token')
-
-        axios.get<IPedidoReqProps[]>('http://localhost:8000/pedidos', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(resposta => setPedidos(resposta.data))
+        http.get<IPedidoReqProps[]>('/pedidos')
+        .then(resposta => setPedidos(resposta.data))
             .catch(erro => console.log(erro))
     }, [])
 
     const excluirPedido = (pedido: IPedidoReqProps) => {
         const token = sessionStorage.getItem('token')
-        axios.delete(`http://localhost:8000/pedidos/` + pedido.id, {
+        http.delete(`/pedidos/` + pedido.id, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

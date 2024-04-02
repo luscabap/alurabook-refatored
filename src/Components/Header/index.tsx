@@ -95,7 +95,7 @@ export const Header: React.FC = () => {
 
                 {usuarioLogado && (
                     <>
-                        <div onClick={() => navigate("/pedidos")}>
+                        <div onClick={() => navigate("/minha-conta")}>
                             MINHA CONTA
                         </div>
                     </>

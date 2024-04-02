@@ -1,9 +1,10 @@
+import { ITituloPrincipalProps } from '../../interface/ITituloPrincipalProps';
 import * as Style from './style';
 
-export const TitutloPrincipal = (titulo: string) => {
+export const TituloPrincipal = ({ textoTitulo }: ITituloPrincipalProps) => {
     return (
         <Style.ContainerTituloPrincipal>
-            {titulo}
+            {textoTitulo}
         </Style.ContainerTituloPrincipal>
     )
 }

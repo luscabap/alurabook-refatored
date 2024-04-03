@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import { LivrosDestaque } from '../../Components/LivrosDestaque';
 import { SecaoDestacada } from '../../Components/SecaoDestacada';
 import * as Style from './style';
 import { MagnifyingGlass } from '@phosphor-icons/react';
+import { obterLivroDestaque } from '../../http';
 
 export const PaginaPrincipal = () => {
     const categorias = [
@@ -14,6 +16,11 @@ export const PaginaPrincipal = () => {
         'Java',
         'Python',
     ]
+
+    const { data: lancamentos } = useQuery(['lancamentos'], () => obterLivroDestaque('lancamentos'))
+    const { data: maisVendidos } = useQuery(['maisVendidos'], () => obterLivroDestaque('mais-vendidos'))
+    console.log(lancamentos)
+    console.log(maisVendidos)
 
     return (
         <>
@@ -28,16 +35,12 @@ export const PaginaPrincipal = () => {
 
             <LivrosDestaque 
                 titulo='últimos lançamentos'
-                imgLivroPrincipal='livro1.svg'
-                imgLivro2='livro2.svg'
-                imgLivro3='livro3.svg'
+                livros={lancamentos ?? []}
             />
 
             <LivrosDestaque 
                 titulo='mais vendidos'
-                imgLivroPrincipal='livro4.svg'
-                imgLivro2='livro5.svg'
-                imgLivro3='livro6.svg'
+                livros={maisVendidos ?? []}
             />
 
             <SecaoDestacada 

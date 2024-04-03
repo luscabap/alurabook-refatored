@@ -1,5 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { ICategoriaProps } from "../interface/ICategoriaProps";
+import { ILivroProps } from "../interface/ILivroProps";
 
 const http = axios.create({
   baseURL: "http://localhost:8000",
@@ -41,3 +43,18 @@ http.interceptors.response.use(
 );
 
 export default http;
+
+export const obterCategoriaPorSlug = async (slug: string) => {
+  const resposta = await http.get<ICategoriaProps[]>('categorias', {
+    params: {
+      slug
+    }
+  })
+
+  return resposta.data[0]
+}
+
+export const obterLivroDestaque = async (tipo: string) => {
+  const resposta = await http.get<ILivroProps[]>(`/public/${tipo}`)
+  return resposta.data
+}

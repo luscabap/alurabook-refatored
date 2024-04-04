@@ -17,10 +17,8 @@ export const PaginaPrincipal = () => {
         'Python',
     ]
 
-    const { data: lancamentos } = useQuery(['lancamentos'], () => obterLivroDestaque('lancamentos'))
-    const { data: maisVendidos } = useQuery(['maisVendidos'], () => obterLivroDestaque('mais-vendidos'))
-    console.log(lancamentos)
-    console.log(maisVendidos)
+    const { data: lancamentos } = useQuery(['lancamentos'], () => obterLivroDestaque('lancamentos'));
+    const { data: maisVendidos } = useQuery(['maisVendidos'], () => obterLivroDestaque('mais-vendidos'));
 
     return (
         <>

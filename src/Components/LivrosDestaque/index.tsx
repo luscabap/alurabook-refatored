@@ -3,6 +3,7 @@ import { ILivroProps } from '../../interface/ILivroProps'
 import { formatador } from '../../util/formatadorMoeda'
 import * as Style from './style'
 import { Heart, ShoppingBagOpen } from '@phosphor-icons/react'
+import { useNavigate } from 'react-router-dom'
 
 interface ILivrosDestaqueProps {
     livros: ILivroProps[],
@@ -10,7 +11,9 @@ interface ILivrosDestaqueProps {
 }
 
 export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
-    const [selecionado, setSelecionado] = useState<ILivroProps>()
+    const [selecionado, setSelecionado] = useState<ILivroProps>();
+    const [favorito, setFavorito] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (livros?.length) {
@@ -41,11 +44,11 @@ export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
 
                 {selecionado &&
                     <Style.ContainerInfosLivro>
-                        <Style.HeaderContainer>
+                        <Style.HeaderContainer favorito={favorito}>
                             <h2 className='headerContainer__icone__tituloContainer'>Sobre o livro:</h2>
                             <div>
-                                <ShoppingBagOpen size={38} color='#002F52' className='headerContainer__icone' />
-                                <Heart size={38} color='#002F52' className='headerContainer__icone' />
+                                <Heart size={38} color='#002F52' className='headerContainer__iconeFav' onClick={() => setFavorito(!favorito)}/>
+                                <ShoppingBagOpen size={38} color='#002F52' className='headerContainer__iconeShop' />
                             </div>
                         </Style.HeaderContainer>
                         <h3 className='tituloLivro'>{selecionado?.titulo}</h3>
@@ -53,8 +56,13 @@ export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
                         <p className='numero_paginas'>{selecionado?.numeroPaginas} páginas</p>
                         <p className='autor'>{selecionado?.autor}</p>
                         <Style.FooterContainer>
-                            <p className='infosPreco'>A partir de: <br></br><strong className='infosPreco__valor'>R$ {formatador.format(valorMinimo)}</strong></p>
-                            <button className='botao'>Comprar</button>
+                            <p className='infosPreco'>A partir de: <br></br><strong className='infosPreco__valor'>{formatador.format(valorMinimo)}</strong></p>
+                            <button 
+                                className='botao'
+                                onClick={() => navigate(`/livro/${selecionado.slug}`)}
+                            >
+                                Comprar
+                            </button>
                         </Style.FooterContainer>
                     </Style.ContainerInfosLivro>}
             </div>

@@ -45,7 +45,11 @@ export const ContainerLivrosDestaque = styled.section`
   }
 `;
 
-export const HeaderContainer = styled.header`
+interface HeaderProps {
+  favorito: boolean;
+}
+
+export const HeaderContainer = styled.header<HeaderProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,7 +62,12 @@ export const HeaderContainer = styled.header`
         margin: 0;
     }
 
-    .headerContainer__icone{
+    .headerContainer__iconeFav{
+        margin-left: 2rem;
+        cursor: pointer;
+    }
+
+    .headerContainer__iconeShop{
         margin-left: 2rem;
         cursor: pointer;
     }

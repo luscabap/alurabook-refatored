@@ -58,3 +58,13 @@ export const obterLivroDestaque = async (tipo: string) => {
   const resposta = await http.get<ILivroProps[]>(`/public/${tipo}`)
   return resposta.data
 }
+
+export const obterLivrosDaCategoria = async (categoria: ICategoriaProps) => {
+  const resposta = await http.get<ILivroProps[]>('livros', {
+    params: {
+      categoria: categoria.id
+    }
+  })
+
+  return resposta.data
+}

@@ -7,6 +7,8 @@ import { useState } from "react";
 import { SobreProduto } from "../../Components/SobreProduto";
 import { ILivroProps } from "../../interface/ILivroProps";
 import { formatador } from "../../util/formatadorMoeda";
+import { Loader } from "../../Components/Loader";
+import { AxiosError } from "axios";
 
 export const PaginaDetalhesLivro = () => {
     const [quantidade, setQuantidade] = useState(0);
@@ -14,11 +16,24 @@ export const PaginaDetalhesLivro = () => {
 
     const params = useParams();
 
-    const { data: livro } = useQuery<ILivroProps>(['obterInfosLivro', params.slugLivro],
+    const { data: livro, isLoading, error } = useQuery<ILivroProps | null, AxiosError>(['obterInfosLivro', params.slugLivro],
         () => obterInfosLivro(params.slugLivro || ''));
 
     const { data: autor } = useQuery(['obterAutor', livro?.autor], () => obterAutor(livro?.autor))
-    console.log(autor);
+
+    if (error) {
+        console.log('Alguma coisa deu errada.');
+        console.log(error.message);
+        return <h1>OPS! Algum erro inesperado aconteceu.</h1>;
+    }
+
+    if (livro === null) {
+        return <h1>Livro não encontrado</h1>
+    }
+
+    if (isLoading || !autor) {
+        return <Loader />
+    }
 
     const opcoes: AbGrupoOpcoesProps[] = livro?.opcoesCompra ? livro.opcoesCompra.map(opcao => ({
         id: opcao.id,

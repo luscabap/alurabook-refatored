@@ -76,7 +76,9 @@ export const obterInfosLivro = async (slugLivro: string) => {
       slug: slugLivro
     }
   });
-
+  if (data.length === 0 ) {
+    return null
+  }
   return data[0];
 }
 
@@ -90,6 +92,7 @@ export const obterAutor = async (id: number) => {
     return data[0]
   
   } catch (error) {
+    console.log("Não foi possível encontrar o autor.")
     console.log(error)
   }
 }

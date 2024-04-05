@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { ICategoriaProps } from "../interface/ICategoriaProps";
 import { ILivroProps } from "../interface/ILivroProps";
+import { IAutorProps } from "../interface/IAutorProps";
 
 const http = axios.create({
   baseURL: "http://localhost:8000",
@@ -10,6 +11,8 @@ const http = axios.create({
     Content: "application/json",
   },
 });
+
+export default http;
 
 http.interceptors.request.use(
   function (config) {
@@ -42,8 +45,6 @@ http.interceptors.response.use(
   }
 );
 
-export default http;
-
 export const obterCategoriaPorSlug = async (slug: string) => {
   const resposta = await http.get<ICategoriaProps[]>('categorias', {
     params: {
@@ -69,9 +70,26 @@ export const obterLivrosDaCategoria = async (categoria: ICategoriaProps) => {
   return resposta.data
 }
 
+export const obterInfosLivro = async (slugLivro: string) => {
+  const { data } = await http.get<ILivroProps[]>('/livros', {
+    params: {
+      slug: slugLivro
+    }
+  });
 
-export const obterInfosLivro = async (id: string) => {
-  const resposta = await http.get<ILivroProps>(`/livros/${id}`);
+  return data[0];
+}
 
-  return resposta.data;
+export const obterAutor = async (id: number) => {
+  try {
+    const { data } = await http.get<IAutorProps[]>('autores', {
+      params: {
+        id
+      }
+    });
+    return data[0]
+  
+  } catch (error) {
+    console.log(error)
+  }
 }

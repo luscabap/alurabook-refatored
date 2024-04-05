@@ -17,7 +17,7 @@ export const MiniCard = ({ livro }: IMiniCardProps) => {
             <img src={livro.imagemCapa} alt={`Livro ${livro.titulo} escrito por ${livro.autor}`}/>
             <h2 className='tituloLivro'>{livro.titulo}</h2>
             <p>A partir de:<br></br><strong>{formatador.format(valorMinimo)}</strong></p>
-            <button className='botao' onClick={() => navigate(`/livros/${livro.id}`)}>Comprar</button>
+            <button className='botao' onClick={() => navigate(`/livros/${livro.slug}`)}>Comprar</button>
         </Style.ContainerMiniCard>
     )
 }

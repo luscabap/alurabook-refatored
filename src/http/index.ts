@@ -68,3 +68,10 @@ export const obterLivrosDaCategoria = async (categoria: ICategoriaProps) => {
 
   return resposta.data
 }
+
+
+export const obterInfosLivro = async (id: string) => {
+  const resposta = await http.get<ILivroProps>(`/livros/${id}`);
+
+  return resposta.data;
+}

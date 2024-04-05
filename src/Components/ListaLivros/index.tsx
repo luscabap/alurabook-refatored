@@ -14,7 +14,7 @@ export const ListaLivros = ({ categoria }: IListaLivrosProps) => {
     return (
         <Style.ContainerListaLivros>
             {
-                produtos?.map(livro => <MiniCard livro={livro} key={livro.id}/>)
+                produtos?.map(livro => <MiniCard livro={livro} categoria={categoria} key={livro.id} />)
             }
         </Style.ContainerListaLivros>
     )

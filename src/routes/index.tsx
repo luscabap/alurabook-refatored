@@ -16,8 +16,8 @@ export const Rotas = () => {
                     <Route path='/minha-conta' element={<PaginaLogada />}>
                         <Route path='pedidos' element={<PaginaPedidos />} />
                     </Route>
-                    <Route path="/categorias/:slug" element={<PaginaCategoria />}/>
-                    <Route path="/livro/:slug" element={<PaginaDetalhesLivro />}/>
+                    <Route path="/categorias/:slug" element={<PaginaCategoria />} />
+                    <Route path="/livros/:id" element={<PaginaDetalhesLivro />} />
                     <Route path="*" element={<PaginaNaoEncontrada />}/>
                 </Route>
             </Routes>

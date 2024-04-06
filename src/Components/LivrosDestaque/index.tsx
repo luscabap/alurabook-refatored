@@ -4,6 +4,8 @@ import { formatador } from '../../util/formatadorMoeda'
 import * as Style from './style'
 import { Heart, ShoppingBagOpen } from '@phosphor-icons/react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { obterAutor } from '../../http'
 
 interface ILivrosDestaqueProps {
     livros: ILivroProps[],
@@ -14,6 +16,7 @@ export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
     const [selecionado, setSelecionado] = useState<ILivroProps>();
     const [favorito, setFavorito] = useState(false);
     const navigate = useNavigate();
+    const { data: autor } = useQuery(['obterAutor', selecionado], () => obterAutor(selecionado?.autor))
 
     useEffect(() => {
         if (livros?.length) {
@@ -54,7 +57,7 @@ export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
                         <h3 className='tituloLivro'>{selecionado?.titulo}</h3>
                         <p className='descricao'>{selecionado?.descricao}</p>
                         <p className='numero_paginas'>{selecionado?.numeroPaginas} páginas</p>
-                        <p className='autor'>{selecionado?.autor}</p>
+                        <p className='autor'>{autor?.nome}</p>
                         <Style.FooterContainer>
                             <p className='infosPreco'>A partir de: <br></br><strong className='infosPreco__valor'>{formatador.format(valorMinimo)}</strong></p>
                             <button 

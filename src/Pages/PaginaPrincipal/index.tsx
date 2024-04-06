@@ -3,7 +3,7 @@ import { LivrosDestaque } from '../../Components/LivrosDestaque';
 import { SecaoDestacada } from '../../Components/SecaoDestacada';
 import * as Style from './style';
 import { MagnifyingGlass } from '@phosphor-icons/react';
-import { obterLivroDestaque } from '../../http';
+import { obterAutor, obterLivroDestaque } from '../../http';
 
 export const PaginaPrincipal = () => {
     const categorias = [

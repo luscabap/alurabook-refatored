@@ -1,38 +1,16 @@
-import { gql, useQuery } from '@apollo/client';
+import { AbBotao, AbCampoTexto } from 'ds-alurabooks';
+import { useState } from 'react';
 import { ICategoriaProps } from '../../interface/ICategoriaProps';
 import { MiniCard } from '../MiniCard';
 import * as Style from './style';
-import { ILivroProps } from '../../interface/ILivroProps';
-import { AbBotao, AbCampoTexto } from 'ds-alurabooks';
-import { useState } from 'react';
+import { useLivros } from '../../Graphql/livros/hooks';
 
 interface IListaLivrosProps {
     categoria: ICategoriaProps
 }
 
-const OBTER_LIVROS = gql`
-    query ObterLivros($categoriaId: Int, $titulo: String) {
-        livros (categoriaId: $categoriaId, titulo: $titulo) {
-            id,
-            slug,
-            titulo,
-            imagemCapa,
-            opcoesCompra {
-                id
-                preco
-            }
-        }
-    }
-
-`
-
 export const ListaLivros = ({ categoria }: IListaLivrosProps) => {
-    const { data, refetch } = useQuery<{ livros: ILivroProps }>(OBTER_LIVROS, {
-        variables: {
-            categoriaId: categoria.id
-        }
-    })
-
+    const { data, refetch } = useLivros(categoria);
     const [textoBusca, setTextoBusca] = useState('')
 
     const buscarLivros = (evento: React.FormEvent<HTMLFormElement>) => {

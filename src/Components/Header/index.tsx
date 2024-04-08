@@ -1,25 +1,33 @@
-import * as Style from './style';
+import { gql, useQuery } from '@apollo/client';
+import { ShoppingBagOpen, SignOut, User, Users } from '@phosphor-icons/react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/Logo.png';
-import { ShoppingBagOpen, SignOut, User, Users } from '@phosphor-icons/react'
-import { useEffect, useState } from 'react';
+import { ICategoriaProps } from '../../interface/ICategoriaProps';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
 import { ModalLogin } from '../ModalLogin';
-import { useNavigate } from 'react-router-dom';
-import { ICategoriaProps } from '../../interface/ICategoriaProps';
-import http from '../../http';
+import * as Style from './style';
 
+const OBTER_CATEGORIAS = gql`
+    query ObterCategorias {
+        categorias {
+            nome,
+            id,
+            slug
+        }
+    }
+`
 
 export const Header: React.FC = () => {
+    const { data } = useQuery<{ categorias: ICategoriaProps[] }>(OBTER_CATEGORIAS)
     const [aberto, setAberto] = useState(false)
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
     const [modalLoginAberta, setModalLoginAberta] = useState(false);
-    const [categorias, setCategorias] = useState<ICategoriaProps[]>([]);
 
     const navigate = useNavigate();
 
     const token = sessionStorage.getItem('token')
     const [usuarioLogado, setUsuarioLogado] = useState<boolean>(token != null);
-
 
     function handleAberto() {
         setAberto(!aberto)
@@ -36,13 +44,6 @@ export const Header: React.FC = () => {
         navigate('/')
     }
 
-    useEffect(() => {
-        http.get<ICategoriaProps[]>('/categorias')
-            .then(resposta => {
-                setCategorias(resposta.data)
-            })
-    }, [])
-
     return (
         <Style.Header>
             <div className="containerInfos">
@@ -55,7 +56,7 @@ export const Header: React.FC = () => {
                         <li className="lista__item" onClick={handleAberto}>CATEGORIAS</li>
                         <Style.OpcoesCategorias aberto={aberto}>
                             {
-                                categorias.map(categoria => (
+                                data?.categorias.map(categoria => (
                                     <li
                                         className='opcoesCategorias__item'
                                         onClick={() => navigate(`/categorias/${categoria.slug}`)}

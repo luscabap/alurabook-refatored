@@ -1,14 +1,11 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { obterAutor, obterInfosLivro } from "../../http";
 import { AbBotao, AbGrupoOpcoes, AbGrupoOpcoesProps, AbInputQuantidade } from "ds-alurabooks";
-import * as Style from './style'
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { SobreProduto } from "../../Components/SobreProduto";
-import { ILivroProps } from "../../interface/ILivroProps";
+import { useLivroEspecifico } from "../../Graphql/LivroEspecifico/hooks";
 import { formatador } from "../../util/formatadorMoeda";
+import * as Style from './style';
 import { Loader } from "../../Components/Loader";
-import { AxiosError } from "axios";
 
 export const PaginaDetalhesLivro = () => {
     const [quantidade, setQuantidade] = useState(0);
@@ -16,26 +13,20 @@ export const PaginaDetalhesLivro = () => {
 
     const params = useParams();
 
-    const { data: livro, isLoading, error } = useQuery<ILivroProps | null, AxiosError>(['obterInfosLivro', params.slugLivro],
-        () => obterInfosLivro(params.slugLivro || ''));
+    const { data, loading, error } = useLivroEspecifico(params.slugLivro || '');
 
-    const { data: autor } = useQuery(['obterAutor', livro?.autor], () => obterAutor(livro?.autor))
+    // const { data: autor } = useQuery(['obterAutor', livro?.autor], () => obterAutor(livro?.autor))
 
-    if (error) {
-        console.log('Alguma coisa deu errada.');
-        console.log(error.message);
-        return <h1>OPS! Algum erro inesperado aconteceu.</h1>;
-    }
-
-    if (livro === null) {
-        return <h1>Livro não encontrado</h1>
-    }
-
-    if (isLoading || !autor) {
+    if (loading) {
         return <Loader />
     }
 
-    const opcoes: AbGrupoOpcoesProps[] = livro?.opcoesCompra ? livro.opcoesCompra.map(opcao => ({
+    if (error) {
+        console.log(error)
+        return <h1>OPS! Algum erro inesperado aconteceu</h1>
+    }
+
+    const opcoes: AbGrupoOpcoesProps[] = data?.livro.opcoesCompra ? data?.livro.opcoesCompra.map(opcao => ({
         id: opcao.id,
         corpo: formatador.format(opcao.preco),
         titulo: opcao.titulo,
@@ -45,11 +36,11 @@ export const PaginaDetalhesLivro = () => {
         <Style.ContainerPaginaDetalhesLivro>
             <h1 className="tituloPagina">Detalhes do livro</h1>
             <div className="container">
-                <img src={livro?.imagemCapa} alt={`Livro ${livro?.titulo} escrito por ${livro?.autor}`} className="container__img" />
+                <img src={data?.livro.imagemCapa} alt={`Livro ${data?.livro.titulo} escrito por ${data?.livro.autor}`} className="container__img" />
                 <div className="container__containerInfos">
-                    <h2 className="container__containerInfos__titulo">{livro?.titulo}</h2>
-                    <p className="container__containerInfos__descricao">{livro?.descricao}</p>
-                    <p className="container__containerInfos__autor">Por: {autor?.nome}</p>
+                    <h2 className="container__containerInfos__titulo">{data?.livro.titulo}</h2>
+                    <p className="container__containerInfos__descricao">{data?.livro.descricao}</p>
+                    {/* <p className="container__containerInfos__autor">Por: {data?.autor.nome}</p> */}
                     <h3 className="container__containerInfos__informarLivro">Selecione o formato do seu livro: </h3>
                     <div className="container__containerInfos__opcoes">
                         <AbGrupoOpcoes
@@ -67,14 +58,14 @@ export const PaginaDetalhesLivro = () => {
                     />
                 </div>
             </div>
-            <SobreProduto
+            {/* <SobreProduto
                 titulo="Sobre o Autor"
-                informacoes={livro}
-            />
-            <SobreProduto
+                informacoes={data.livro}
+            /> */}
+            {/* <SobreProduto
                 titulo="Sobre o Livro"
                 informacoes={autor}
-            />
+            /> */}
         </Style.ContainerPaginaDetalhesLivro>
     )
 }

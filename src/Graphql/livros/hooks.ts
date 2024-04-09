@@ -1,13 +1,15 @@
-import { useQuery } from "@apollo/client";
-import { ICategoriaProps } from "../../interface/ICategoriaProps";
+import { useQuery, useReactiveVar } from "@apollo/client";
 import { ILivroProps } from "../../interface/ILivroProps";
 import { OBTER_LIVROS } from "./queries";
-import { livrosVar } from "./state";
+import { filtroLivrosVar, livrosVar } from "./state";
 
-export const useLivros = (categoria: ICategoriaProps) => {
+export const useLivros = () => {
+  const filtro = useReactiveVar(filtroLivrosVar)
+
   return useQuery<{ livros: ILivroProps[] }>(OBTER_LIVROS, {
     variables: {
-      categoriaId: categoria.id,
+      categoriaId: filtro.categoria?.id,
+      titulo: filtro.titulo
     },
     onCompleted(data) {
         if (data.livros) {

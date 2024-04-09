@@ -12,6 +12,7 @@ export const ContainerPagina = styled.div`
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        margin: 2rem 0;
         
         input {
             width: 800px;

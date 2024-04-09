@@ -44,6 +44,11 @@ export const Header: React.FC = () => {
         navigate('/')
     }
 
+    function direcionarLivroClicado(slugLivro: string) {
+        navigate(`/categorias/${slugLivro}`)
+        handleAberto()
+    }
+
     return (
         <Style.Header>
             <div className="containerInfos">
@@ -59,7 +64,7 @@ export const Header: React.FC = () => {
                                 data?.categorias.map(categoria => (
                                     <li
                                         className='opcoesCategorias__item'
-                                        onClick={() => navigate(`/categorias/${categoria.slug}`)}
+                                        onClick={() => direcionarLivroClicado(categoria.slug)}
                                         key={categoria.id}
                                     >
                                         {categoria.nome}

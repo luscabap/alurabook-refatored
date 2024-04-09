@@ -3,10 +3,12 @@ import styled from "styled-components";
 export const ContainerMiniCard = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     max-width: 350px;
     flex-wrap: wrap;
+    box-shadow: 1px 1px 5px #000;
+    border-radius: 0 0 1rem 1rem;
 
     .tituloLivro{
         color: #002F52;
@@ -20,6 +22,14 @@ export const ContainerMiniCard = styled.div`
         border: none;
         font-size: 24px;
         font-weight: bolder;
+        transition: 0.5s;
+        cursor: pointer;
+        border-radius: 0 0 1rem 1rem;
+
+        &:hover{
+            background-color: #8a4908;
+            transition: 0.3s;
+        }
     }
 
     p {

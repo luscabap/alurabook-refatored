@@ -1,4 +1,6 @@
+import { IAutorProps } from "./IAutorProps"
 import { IOpcaoCompraProps } from "./IOpcaoCompraProps"
+import { ITag } from "./ITag"
 
 export interface ILivroProps {
     id: number
@@ -10,7 +12,8 @@ export interface ILivroProps {
     numeroPaginas: number
     publicacao: string
     imagemCapa: string
-    autor: number
+    autor: IAutorProps
     opcoesCompra: IOpcaoCompraProps[]
     sobre: string
+    tags: ITag[]
 }

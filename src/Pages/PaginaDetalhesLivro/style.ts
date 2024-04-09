@@ -5,6 +5,7 @@ export const ContainerPaginaDetalhesLivro = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 1rem 0;
 
     .tituloPagina{
         font-weight: 700;
@@ -61,5 +62,13 @@ export const ContainerPaginaDetalhesLivro = styled.div`
                 display: flex;
             }
         }
+    }
+
+    .container__tags{
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        justify-content: flex-start;
+        width: 1000px;
     }
 `

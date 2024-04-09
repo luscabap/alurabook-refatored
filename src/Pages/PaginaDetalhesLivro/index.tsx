@@ -1,4 +1,4 @@
-import { AbBotao, AbGrupoOpcoes, AbGrupoOpcoesProps, AbInputQuantidade } from "ds-alurabooks";
+import { AbBotao, AbGrupoOpcoes, AbGrupoOpcoesProps, AbInputQuantidade, AbTag } from "ds-alurabooks";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { SobreProduto } from "../../Components/SobreProduto";
@@ -14,8 +14,6 @@ export const PaginaDetalhesLivro = () => {
     const params = useParams();
 
     const { data, loading, error } = useLivroEspecifico(params.slugLivro || '');
-
-    // const { data: autor } = useQuery(['obterAutor', livro?.autor], () => obterAutor(livro?.autor))
 
     if (loading) {
         return <Loader />
@@ -40,7 +38,7 @@ export const PaginaDetalhesLivro = () => {
                 <div className="container__containerInfos">
                     <h2 className="container__containerInfos__titulo">{data?.livro.titulo}</h2>
                     <p className="container__containerInfos__descricao">{data?.livro.descricao}</p>
-                    {/* <p className="container__containerInfos__autor">Por: {data?.autor.nome}</p> */}
+                    <p className="container__containerInfos__autor">Por: {data?.livro.autor.nome}</p>
                     <h3 className="container__containerInfos__informarLivro">Selecione o formato do seu livro: </h3>
                     <div className="container__containerInfos__opcoes">
                         <AbGrupoOpcoes
@@ -58,14 +56,19 @@ export const PaginaDetalhesLivro = () => {
                     />
                 </div>
             </div>
-            {/* <SobreProduto
-                titulo="Sobre o Autor"
-                informacoes={data.livro}
-            /> */}
-            {/* <SobreProduto
-                titulo="Sobre o Livro"
-                informacoes={autor}
-            /> */}
+            <div>
+                <SobreProduto
+                    titulo="Sobre o Autor"
+                    informacoes={data?.livro.autor.sobre || ''}
+                    />
+                <SobreProduto
+                    titulo="Sobre o Livro"
+                    informacoes={data?.livro.sobre || ''}
+                />
+            </div>
+            <div className="container__tags">
+                {data?.livro.tags?.map(tag => <AbTag contexto="secundario" texto={tag.nome} key={tag.id}/>)}
+            </div>
         </Style.ContainerPaginaDetalhesLivro>
     )
 }

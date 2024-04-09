@@ -6,6 +6,7 @@ import { PaginaBase } from "../Pages/PaginaBase"
 import { PaginaNaoEncontrada } from "../Pages/PaginaNaoEncontrada"
 import { PaginaCategoria } from "../Pages/PaginaCategoria"
 import { PaginaDetalhesLivro } from "../Pages/PaginaDetalhesLivro"
+import { PaginaCarrinho } from "../Pages/PaginaCarrinho"
 
 export const Rotas = () => {
     return (
@@ -18,6 +19,7 @@ export const Rotas = () => {
                     </Route>
                     <Route path="/categorias/:slug" element={<PaginaCategoria />} />
                     <Route path="/livros/:slugLivro" element={<PaginaDetalhesLivro />} />
+                    <Route path="/minha-sacola" element={<PaginaCarrinho />}/>
                     <Route path="*" element={<PaginaNaoEncontrada />}/>
                 </Route>
             </Routes>

@@ -4,11 +4,18 @@ interface IOpcoesCategoriasProps {
   aberto: boolean;
 }
 
-export const Header = styled.header`
+interface IHeaderProps {
+  resumoCompraAberto: boolean;
+}
+
+export const Header = styled.header<IHeaderProps>`
   background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  width: 100%;
+  height: 85px;
 
   .containerInfos {
     display: flex;
@@ -74,16 +81,34 @@ export const Header = styled.header`
         color: #000;
         font-size: 20px;
       }
-    };
+    }
 
-    .containerLogout{
+    .containerLogout {
       cursor: pointer;
       transition: 0.4s;
 
-      &:hover{
+      &:hover {
         color: red;
         transition: 0.7s;
       }
+    }
+  }
+
+  .containerFlutuante {
+    position: absolute;
+    display: ${props => props.resumoCompraAberto ? 'block' : 'none'};
+    background-color: #FEFEFE;
+    width: 45%;
+    right: 1rem;
+    top: 5.3rem;
+    padding: 1rem;
+    border: 1px solid #002F52;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0);
+
+    .containerFlutuante__titulo{
+      font-weight: 700;
+      font-size: 20px;
+      color: #EB9B00;
     }
   }
 `;

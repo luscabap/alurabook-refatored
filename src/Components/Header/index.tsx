@@ -7,6 +7,9 @@ import { ICategoriaProps } from '../../interface/ICategoriaProps';
 import ModalCadastroUsuario from '../ModalCadastroUsuario';
 import { ModalLogin } from '../ModalLogin';
 import * as Style from './style';
+import { useCarrinhoContext } from '../../hooks';
+import { AbBotao } from 'ds-alurabooks';
+import { CardFlutuante } from '../CardFlutuante';
 
 const OBTER_CATEGORIAS = gql`
     query ObterCategorias {
@@ -19,8 +22,10 @@ const OBTER_CATEGORIAS = gql`
 `
 
 export const Header: React.FC = () => {
-    const { data } = useQuery<{ categorias: ICategoriaProps[] }>(OBTER_CATEGORIAS)
-    const [aberto, setAberto] = useState(false)
+    const { data } = useQuery<{ categorias: ICategoriaProps[] }>(OBTER_CATEGORIAS);
+    const { carrinho } = useCarrinhoContext()
+    const [aberto, setAberto] = useState(false);
+    const [resumoCompraAberto, setResumoCompraAberto ] = useState(false);
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
     const [modalLoginAberta, setModalLoginAberta] = useState(false);
 
@@ -31,6 +36,10 @@ export const Header: React.FC = () => {
 
     function handleAberto() {
         setAberto(!aberto)
+    }
+
+    function handleResumoCompraAberto() {
+        setResumoCompraAberto(!resumoCompraAberto)
     }
 
     function aoEfetuarLogin() {
@@ -49,8 +58,14 @@ export const Header: React.FC = () => {
         handleAberto()
     }
 
+    function direcionarASacola() {
+        navigate('/minha-sacola')
+        handleResumoCompraAberto()
+        scrollTo(top)
+    }
+
     return (
-        <Style.Header>
+        <Style.Header resumoCompraAberto={resumoCompraAberto}>
             <div className="containerInfos">
                 <div className="containerInfos__titulo" onClick={() => navigate("/")}>
                     <img src={logo} alt="Logo do site" />
@@ -93,7 +108,9 @@ export const Header: React.FC = () => {
 
                 {usuarioLogado && (
                     <>
-                        <div className="containerBotoes__Item" onClick={() => navigate('/minha-sacola')}>
+                        <div className="containerBotoes__Item" 
+                            onClick={handleResumoCompraAberto}
+                        >
                             <ShoppingBagOpen size={32} color='#002F52' />
                             <a className="containerBotoes__Item__botao">Minha Sacola</a>
                         </div>
@@ -116,6 +133,22 @@ export const Header: React.FC = () => {
                     aoFechar={() => setModalLoginAberta(false)}
                     aoEfetuarLogin={aoEfetuarLogin}
                 />
+            </div>
+            <div className='containerFlutuante'>
+                <h2 className='containerFlutuante__titulo'>Resumo da compra</h2>
+                {
+                    carrinho?.itens.map(item => (
+                        <CardFlutuante 
+                            key={item.livro.id}
+                            autor={item.livro.autor.nome}
+                            imagem={item.livro.imagemCapa}
+                            preco={item.opcaoCompra.preco}
+                            quantidade={item.quantidade}
+                            titulo={item.livro.titulo}
+                        />
+                    ))
+                }
+                <AbBotao texto='Ver sacola' onClick={direcionarASacola}/>
             </div>
         </Style.Header>
     )

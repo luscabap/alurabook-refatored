@@ -7,6 +7,7 @@ import { useLivroEspecifico } from "../../Graphql/LivroEspecifico/hooks";
 import { formatador } from "../../util/formatadorMoeda";
 import * as Style from './style';
 import { useCarrinhoContext } from "../../hooks";
+import { TituloPrincipal } from "../../Components/TituloPrincipal";
 
 export const PaginaDetalhesLivro = () => {
     const [quantidade, setQuantidade] = useState(1);
@@ -55,7 +56,7 @@ export const PaginaDetalhesLivro = () => {
 
     return (
         <Style.ContainerPaginaDetalhesLivro>
-            <h1 className="tituloPagina">Detalhes do livro</h1>
+            <TituloPrincipal textoTitulo="Detalhes do livro" />
             <div className="container">
                 <img src={data?.livro.imagemCapa} alt={`Livro ${data?.livro.titulo} escrito por ${data?.livro.autor}`} className="container__img" />
                 <div className="container__containerInfos">

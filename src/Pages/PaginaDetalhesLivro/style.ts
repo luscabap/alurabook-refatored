@@ -5,7 +5,6 @@ export const ContainerPaginaDetalhesLivro = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
 
     .tituloPagina{
         font-weight: 700;
@@ -21,6 +20,7 @@ export const ContainerPaginaDetalhesLivro = styled.div`
         display: flex;
         gap: 1rem;
         width: 1000px;
+        margin: 1rem 0%;
 
         .container__img{
             flex: 1;
@@ -70,5 +70,6 @@ export const ContainerPaginaDetalhesLivro = styled.div`
         gap: 1rem;
         justify-content: flex-start;
         width: 1000px;
+        margin: 0 0 1rem 0;
     }
 `

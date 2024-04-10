@@ -6,4 +6,6 @@ export const ContainerTituloPrincipal = styled.h1`
     font-weight: 700;
     padding: 32px 0;
     text-align: center;
+    margin: 0;
+    width: 100%;
 `

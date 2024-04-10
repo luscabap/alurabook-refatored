@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
     function direcionarASacola() {
         navigate('/minha-sacola')
         handleResumoCompraAberto()
-        scrollTo(top)
+        window.scrollTo(0, 0)
     }
 
     return (

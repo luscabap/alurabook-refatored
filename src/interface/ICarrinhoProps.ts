@@ -6,16 +6,14 @@ export interface ICarrinhoProps {
 }
 
 export interface IItemCarrinho {
-    quantidade: number,
-    livroId: number,
-    opcaoCompraId: number,
+    livro: ILivroProps,
     opcaoCompra: IOpcaoCompraProps,
-    livro: ILivroProps
+    quantidade: number
 }
 
 interface IOpcaoCompraProps {
     id: number,
     titulo: string,
-    formatos: string[],
+    formatos?: string[],
     preco: number
 }

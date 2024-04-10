@@ -24,7 +24,7 @@ const CarrinhoProvider = ({ children }: ICarrinhoProviderProps) => {
             variables: {
                 item: {
                     livroId: item.livro.id ,
-                    opcaoCompraId: item.opcaoCompraId,
+                    opcaoCompraId: item.opcaoCompra.id,
                     quantidade: item.quantidade
                   }
             }

@@ -36,7 +36,7 @@ export const PaginaDetalhesLivro = () => {
 
     const aoAdicionarItemAoCarrinho = () => {
         if (!data?.livro) {
-            return console.log("Erro ao adicionar item ao carrinho")
+            return 
         }
         
         const opcaoCompra = data.livro.opcoesCompra.find(op => op.id === opcao?.id)

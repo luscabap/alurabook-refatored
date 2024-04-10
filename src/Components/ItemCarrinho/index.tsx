@@ -8,7 +8,7 @@ import { formatador } from '../../util/formatadorMoeda'
 export const ItemCarrinho = ({ imagem, titulo, descricao, nomeAutor, precoLivro, quantidade }: IITemCarrinhoProps) => {
     const [quantidadeItem, setQuantidadeItem] = useState(quantidade);
 
-    const valor = formatador.format(precoLivro)
+    const valor = formatador.format(precoLivro) 
 
     return (
         <Style.ContainerItemCarrinho>

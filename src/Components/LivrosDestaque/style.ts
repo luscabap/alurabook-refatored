@@ -29,6 +29,7 @@ export const ContainerLivrosDestaque = styled.section`
       margin: 0;
       padding: 0;
       flex: 1;
+      z-index: 0;
 
       .imagem {
         transform: scale(0.7);

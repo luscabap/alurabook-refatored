@@ -1,35 +1,58 @@
-import { AbBotao, AbGrupoOpcoes, AbGrupoOpcoesProps, AbInputQuantidade, AbTag } from "ds-alurabooks";
+import { AbBotao, AbGrupoOpcao, AbGrupoOpcoes, AbInputQuantidade, AbTag } from "ds-alurabooks";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Loader } from "../../Components/Loader";
 import { SobreProduto } from "../../Components/SobreProduto";
 import { useLivroEspecifico } from "../../Graphql/LivroEspecifico/hooks";
 import { formatador } from "../../util/formatadorMoeda";
 import * as Style from './style';
-import { Loader } from "../../Components/Loader";
+import { useCarrinhoContext } from "../../hooks";
 
 export const PaginaDetalhesLivro = () => {
-    const [quantidade, setQuantidade] = useState(0);
-    const [opcao, setOpcao] = useState<AbGrupoOpcoesProps>();
+    const [quantidade, setQuantidade] = useState(1);
+    const [opcao, setOpcao] = useState<AbGrupoOpcao>();
+
+    const { adicionarItemCarrinho } = useCarrinhoContext()
 
     const params = useParams();
 
     const { data, loading, error } = useLivroEspecifico(params.slugLivro || '');
-
-    if (loading) {
-        return <Loader />
-    }
 
     if (error) {
         console.log(error)
         return <h1>OPS! Algum erro inesperado aconteceu</h1>
     }
 
-    const opcoes: AbGrupoOpcoesProps[] = data?.livro.opcoesCompra ? data?.livro.opcoesCompra.map(opcao => ({
+    if (loading) {
+        return <Loader />
+    }
+
+    const opcoes: AbGrupoOpcao[] = data?.livro.opcoesCompra ? data?.livro.opcoesCompra.map(opcao => ({
         id: opcao.id,
         corpo: formatador.format(opcao.preco),
         titulo: opcao.titulo,
         rodape: opcao.formatos ? opcao.formatos.join(',') : ''
     })) : []
+
+    const aoAdicionarItemAoCarrinho = () => {
+        if (!data?.livro) {
+            return console.log("Erro ao adicionar item ao carrinho")
+        }
+        
+        const opcaoCompra = data.livro.opcoesCompra.find(op => op.id === opcao?.id)
+
+        if (!opcaoCompra) {
+            alert("Por favor selecione uma opção de compra!")
+            return
+        }
+
+        adicionarItemCarrinho({
+            livro: data.livro,
+            quantidade,
+            opcaoCompra
+        })
+    }
+
     return (
         <Style.ContainerPaginaDetalhesLivro>
             <h1 className="tituloPagina">Detalhes do livro</h1>
@@ -47,12 +70,14 @@ export const PaginaDetalhesLivro = () => {
                             valorPadrao={opcao}
                         />
                     </div>
+                    <p><strong>*Você terá acesso à futuras atualizações do livro.*</strong></p>
                     <AbInputQuantidade
                         onChange={setQuantidade}
                         value={quantidade}
                     />
                     <AbBotao
                         texto="Comprar"
+                        onClick={aoAdicionarItemAoCarrinho}
                     />
                 </div>
             </div>
@@ -67,7 +92,7 @@ export const PaginaDetalhesLivro = () => {
                 />
             </div>
             <div className="container__tags">
-                {data?.livro.tags?.map(tag => <AbTag contexto="secundario" texto={tag.nome} key={tag.id}/>)}
+                {data?.livro.tags?.map(tag => <AbTag contexto="secundario" texto={tag.nome} key={tag.nome}/>)}
             </div>
         </Style.ContainerPaginaDetalhesLivro>
     )

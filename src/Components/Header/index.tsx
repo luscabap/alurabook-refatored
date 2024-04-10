@@ -78,11 +78,6 @@ export const Header: React.FC = () => {
                 </ul>
             </div>
             <div className="containerBotoes">
-                <div className="containerBotoes__Item">
-                    <ShoppingBagOpen size={32} color='#002F52' />
-                    <a href="#" className="containerBotoes__Item__botao">Minha Sacola</a>
-                </div>
-
                 {!usuarioLogado && (
                     <>
                         <div className="containerBotoes__Item" onClick={() => setModalLoginAberta(true)}>
@@ -98,6 +93,10 @@ export const Header: React.FC = () => {
 
                 {usuarioLogado && (
                     <>
+                        <div className="containerBotoes__Item" onClick={() => navigate('/minha-sacola')}>
+                            <ShoppingBagOpen size={32} color='#002F52' />
+                            <a className="containerBotoes__Item__botao">Minha Sacola</a>
+                        </div>
                         <div className="containerMinhaConta" onClick={() => navigate("/minha-conta")}>
                             <User size={32} color='#002F52' />
                             <p className="containerMinhaConta__texto">Minha conta</p>

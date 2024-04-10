@@ -5,7 +5,7 @@ export interface ICarrinhoProps {
     itens: IItemCarrinho[]
 }
 
-interface IItemCarrinho {
+export interface IItemCarrinho {
     quantidade: number,
     livroId: number,
     opcaoCompraId: number,

@@ -53,6 +53,7 @@ export const Header = styled.header`
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      cursor: pointer;
 
       .containerBotoes__Item__botao {
         text-decoration: none;

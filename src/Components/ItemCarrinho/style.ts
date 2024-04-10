@@ -9,13 +9,15 @@ export const ContainerItemCarrinho = styled.div`
     .container__infosLivro{
         display: flex;
 
+
         .container__infosLivro__texto{
             margin: 0 0 0 1rem;
             display: flex;
             flex-direction: column;
+            width: 400px;
 
             .container__infosLivro__texto__titulo{
-                font-size: 40px;
+                font-size: 30px;
                 color: #002F52;
                 font-weight: 700;
                 margin: 0;

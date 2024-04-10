@@ -35,7 +35,7 @@ export const LivrosDestaque = ({ livros, titulo }: ILivrosDestaqueProps) => {
                                 onClick={() => setSelecionado(livro)}
                                 className={selecionado?.titulo === livro.titulo ? 'selecionado' : 'imagem'}
                             >
-                                <img src={livro.imagemCapa} alt={`Capa do livro ${livro.titulo} escrito por ${livro.autor}`} />
+                                <img src={livro.imagemCapa} alt={`Capa do livro ${livro.titulo} escrito por ${livro.autor}`} className='containerImagens__imagem'/>
                             </li>
                         ))
                     }

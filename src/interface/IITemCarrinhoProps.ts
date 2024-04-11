@@ -1,8 +1,5 @@
+import { IItemCarrinho } from "./ICarrinhoProps";
+
 export interface IITemCarrinhoProps {
-    imagem: string,
-    titulo: string,
-    descricao: string,
-    nomeAutor: string,
-    precoLivro: number,
-    quantidade: number
+    livro: IItemCarrinho,
 }

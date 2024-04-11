@@ -6,8 +6,10 @@ import * as Style from './style';
 import { useCarrinhoContext } from '../../hooks';
 
 export const PaginaCarrinho = () => {
-    const { carrinho, adicionarItemCarrinho } = useCarrinhoContext();
+    const { carrinho } = useCarrinhoContext();
+
     const livros = carrinho?.itens;
+    
     const valor = formatador.format(Number(carrinho?.total || 0));
 
     return (
@@ -19,12 +21,7 @@ export const PaginaCarrinho = () => {
                     {
                         livros?.map((item, index) => (
                             <ItemCarrinho
-                                imagem={item.livro.imagemCapa}
-                                descricao={item.livro.descricao}
-                                nomeAutor={item.livro.autor.nome}
-                                precoLivro={item.opcaoCompra.preco}
-                                quantidade={item.quantidade}
-                                titulo={item.livro.titulo}
+                                livro={item}
                                 key={index}
                             />
                         ))

@@ -9,7 +9,13 @@ export const ContainerItemCarrinho = styled.div`
     .container__infosLivro{
         display: flex;
 
-
+        .container__infosLivro__img{
+            min-width: 336px;
+            min-height: 380px;
+            display: flex;
+            justify-content: center;
+        }
+        
         .container__infosLivro__texto{
             margin: 0 0 0 1rem;
             display: flex;

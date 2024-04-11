@@ -6,11 +6,19 @@ import { formatador } from '../../util/formatadorMoeda'
 import * as Style from './style'
 
 export const ItemCarrinho = ({ livro }: IITemCarrinhoProps) => {
-    const { adicionarItemCarrinho } = useCarrinhoContext();
+    const { adicionarItemCarrinho, removerItemCarrinho } = useCarrinhoContext();
 
     const valor = formatador.format(livro.opcaoCompra.preco);
 
     const alterarQuantidadeDoItem = (quantidade: number) => {
+        if (quantidade === 0) {
+            removerItemCarrinho({
+                livro: livro.livro,
+                opcaoCompra: livro.opcaoCompra,
+                quantidade
+            })
+        }
+        
         adicionarItemCarrinho({
             livro: livro.livro,
             opcaoCompra: livro.opcaoCompra,

@@ -27,4 +27,11 @@ export const ContainerPaginaCarrinho = styled.div`
             padding: 3rem 0;
         }
     }
+`;
+
+export const ContainerLoading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
 `

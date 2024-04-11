@@ -4,13 +4,22 @@ import { TituloPrincipal } from '../../Components/TituloPrincipal';
 import { formatador } from '../../util/formatadorMoeda';
 import * as Style from './style';
 import { useCarrinhoContext } from '../../hooks';
+import { Loader } from '../../Components/Loader';
 
 export const PaginaCarrinho = () => {
-    const { carrinho } = useCarrinhoContext();
+    const { carrinho, carregando } = useCarrinhoContext();
 
     const livros = carrinho?.itens;
     
     const valor = formatador.format(Number(carrinho?.total || 0));
+
+    if (carregando) {
+        return (
+            <Style.ContainerLoading>
+                <Loader />
+            </Style.ContainerLoading>
+        )
+    }
 
     return (
         <>
